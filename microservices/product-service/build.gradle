@@ -21,6 +21,11 @@ jar {
     enabled = false
 }
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs << "-parameters"
+}
+
+
 dependencies {
 	implementation project(':api')
 	implementation project(':util')
