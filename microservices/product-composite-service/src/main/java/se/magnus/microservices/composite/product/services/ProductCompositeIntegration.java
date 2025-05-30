@@ -101,16 +101,30 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
 			LOG.debug("Found {} recommendations for a product with id: {}", recommendations.size(), productId);
 			return recommendations;
 		} catch (Exception e) {
-			LOG.warn("Got an exception while requesting recommendations, return zero recommendations: {}", e.getMessage());
+			LOG.warn("Got an exception while requesting recommendations, return zero recommendations: {}",
+					e.getMessage());
 			return new ArrayList<>();
 		}
-		
+
 	}
 
 	@Override
 	public List<Review> getReviews(int productId) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			String url = reviewServiceUrl + productId;
+
+			LOG.debug("Will call getReviews API on URL: {}", url);
+			List<Review> reviews = restTemplate
+					.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Review>>() {
+					}).getBody();
+
+			LOG.debug("Found {} reviews for a product with id: {}", reviews.size(), productId);
+			return reviews;
+
+		} catch (Exception ex) {
+			LOG.warn("Got an exception while requesting reviews, return zero reviews: {}", ex.getMessage());
+			return new ArrayList<>();
+		}
 	}
 
 }
