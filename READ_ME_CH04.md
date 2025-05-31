@@ -19,3 +19,10 @@ echo 'Runtime.getRuntime().availableProcessors()' | sudo docker run --rm -i ecli
 sudo docker run -it --rm eclipse-temurin:17 java -XX:+PrintFlagsFinal | grep "size_t MaxHeapSize"
 
 sudo docker run -it --rm -m=1024M eclipse-temurin:17 java -Xmx600m -XX:+PrintFlagsFinal -version | grep "size_t MaxHeapSize"
+
+
+
+
+docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" --name product-service-1  product-service
+docker logs product-service-1 -f
+docker rm -f product-service-1
