@@ -1,7 +1,17 @@
-spring.application.name: product-service
+spring:
+  config:
+    activate:
+      on-profile:
+      - docker
+  application:
+    name: product-service
 
-server.port: 8001
+server:
+  port: 8080
+
 logging:
    level:
       root: INFO
-      se.magnus.microservices: DEBUG
+      se:
+        magnus:
+          microservices: DEBUG
