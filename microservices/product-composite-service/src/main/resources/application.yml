@@ -1,5 +1,5 @@
 server:
-  port: 8000
+  port: 8080
   error:
     include-message: always
 
@@ -11,14 +11,14 @@ spring:
 
 app:
   product-service:
-    host: localhost
-    port: 8001
+    host: product
+    port: 8080
   recommendation-service:
-    host: localhost
-    port: 8002
+    host: recommendation
+    port: 8080
   review-service:
-    host: localhost
-    port: 8003
+    host: review
+    port: 8080
 
 logging:
    level:
