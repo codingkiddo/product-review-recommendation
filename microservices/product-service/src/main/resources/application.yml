@@ -1,13 +1,17 @@
+server:
+  port: 8001
+  error:
+    include-message: always
+
 spring:
-  config:
-    activate:
-      on-profile:
-      - docker
+#  config:
+#    activate:
+#      on-profile:
+#      - docker
   application:
     name: product-service
 
-server:
-  port: 8080
+
 
 logging:
    level:

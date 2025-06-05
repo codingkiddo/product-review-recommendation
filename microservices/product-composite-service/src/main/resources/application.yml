@@ -1,5 +1,7 @@
-server.port: 8000
-server.error.include-message: always
+server:
+  port: 8000
+  error:
+    include-message: always
 
 app:
   product-service:
@@ -13,6 +15,8 @@ app:
     port: 8003
 
 logging:
-  level:
-    root: INFO
-    se.magnus: DEBUG
+   level:
+      root: INFO
+      se:
+        magnus:
+          microservices: DEBUG
