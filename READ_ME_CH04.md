@@ -26,3 +26,17 @@ sudo docker run -it --rm -m=1024M eclipse-temurin:17 java -Xmx600m -XX:+PrintFla
 docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" --name product-service-1  product-service
 docker logs product-service-1 -f
 docker rm -f product-service-1
+
+
+
+docker images | grep product-review-recommendation
+
+
+docker-compose up -d
+
+
+docker inspect \
+  -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dc4f3eb0f0ad
+
+
+

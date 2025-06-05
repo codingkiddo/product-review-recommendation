@@ -3,6 +3,12 @@ server:
   error:
     include-message: always
 
+spring:
+  config:
+    activate:
+      on-profile:
+      - docker
+
 app:
   product-service:
     host: localhost
