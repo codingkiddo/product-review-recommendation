@@ -28,6 +28,7 @@ docker logs product-service-1 -f
 docker rm -f product-service-1
 
 
+docker-compose build
 
 docker images | grep product-review-recommendation
 

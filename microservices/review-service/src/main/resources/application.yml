@@ -1,2 +1,9 @@
-spring.application.name: review-service
-server.port: 8003
+server: 
+   port: 8080
+spring:
+   config:
+    activate:
+      on-profile:
+      - docker 
+#   application: 
+#      name: review-service
