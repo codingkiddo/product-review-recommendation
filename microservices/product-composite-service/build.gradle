@@ -21,6 +21,10 @@ jar {
     enabled = false
 }
 
+ext {
+    mapstructVersion = "1.5.3.Final"
+}
+
 dependencies {
     implementation project(':api')
     implementation project(':util')

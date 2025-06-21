@@ -7,7 +7,7 @@ java -jar microservices/review-service/build/libs/review-service-1.0.0-SNAPSHOT.
 
 
 
-curl http://localhost:8000/product-composite/1
+curl http://localhost:8080/product-composite/1
 curl http://localhost:8080/product-composite/123 -s | jq .
 
 
