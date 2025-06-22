@@ -1,1 +1,8 @@
 rootProject.name = 'product-composite-service'
+
+
+include ":api"
+project(":api").projectDir = file("../../api");
+
+include ":util"
+project(":util").projectDir = file("../../util");
