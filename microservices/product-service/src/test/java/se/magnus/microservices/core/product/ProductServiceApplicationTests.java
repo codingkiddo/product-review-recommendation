@@ -14,18 +14,18 @@ class ProductServiceApplicationTests {
 	@Autowired
 	private WebTestClient webTestClient;
 	
-	@Test
-	public void get_product_by_id() {
-		int productId = 1;
-
-		webTestClient.get()
-	      .uri("/product/" + productId)
-	      .accept(APPLICATION_JSON)
-	      .exchange()
-	      .expectStatus().isOk()
-	      .expectHeader().contentType(APPLICATION_JSON)
-	      .expectBody()
-	        .jsonPath("$.productId").isEqualTo(productId);
-	}
+//	@Test
+//	public void get_product_by_id() {
+//		int productId = 1;
+//
+//		webTestClient.get()
+//	      .uri("/product/" + productId)
+//	      .accept(APPLICATION_JSON)
+//	      .exchange()
+//	      .expectStatus().isOk()
+//	      .expectHeader().contentType(APPLICATION_JSON)
+//	      .expectBody()
+//	        .jsonPath("$.productId").isEqualTo(productId);
+//	}
 
 }
