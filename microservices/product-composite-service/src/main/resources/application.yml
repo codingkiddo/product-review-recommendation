@@ -1,11 +1,15 @@
 springdoc:
-  swagger-ui.path: /openapi/swagger-ui.html
-  api-docs.path: /openapi/v3/api-docs
+  swagger-ui: 
+     path: /swagger-ui.html
+  api-docs:
+     enabled: true
+     groups:
+       enabled: true 
+     path: /openapi/v3/api-docs
   packagesToScan: se.magnus.microservices.composite.product
   pathsToMatch: /**
 
 api:
-
   common:
     version: 1.0.0
     title: Sample API
@@ -22,10 +26,14 @@ api:
       email: contact@mail.com
 
   responseCodes:
-    ok.description: OK
-    badRequest.description: Bad Request, invalid format of the request. See response message for more information
-    notFound.description: Not found, the specified id does not exist
-    unprocessableEntity.description: Unprocessable entity, input parameters caused the processing to fail. See response message for more information
+    ok: 
+      description: OK
+    badRequest: 
+       description: Bad Request, invalid format of the request. See response message for more information
+    notFound: 
+       description: Not found, the specified id does not exist
+    unprocessableEntity: 
+       description: Unprocessable entity, input parameters caused the processing to fail. See response message for more information
 
   product-composite:
 
@@ -62,37 +70,32 @@ api:
 
         This means that a delete request of a non-existing product will return **200 Ok**.
 
-server.port: 7000
-server.error.include-message: always
+server:
+  port: 8080
+  error:
+    include-message: always
+    whitelabel:
+      enabled: false
+spring:
+  config:
+    activate:
+      on-profile:
+      - docker
 
 app:
   product-service:
     host: localhost
-    port: 7001
+    port: 8081
   recommendation-service:
     host: localhost
-    port: 7002
+    port: 8082
   review-service:
     host: localhost
-    port: 7003
+    port: 8083
 
 logging:
-  level:
-    root: INFO
-    se.magnus: DEBUG
-
----
-spring.config.activate.on-profile: docker
-
-server.port: 8080
-
-app:
-  product-service:
-    host: product
-    port: 8080
-  recommendation-service:
-    host: recommendation
-    port: 8080
-  review-service:
-    host: review
-    port: 8080
+   level:
+      root: INFO
+      se:
+        magnus:
+          microservices: DEBUG
