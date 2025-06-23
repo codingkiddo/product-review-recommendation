@@ -1,10 +1,7 @@
 springdoc:
   swagger-ui: 
-     path: /swagger-ui.html
+     path: /openapi/swagger-ui.html
   api-docs:
-     enabled: true
-     groups:
-       enabled: true 
      path: /openapi/v3/api-docs
   packagesToScan: se.magnus.microservices.composite.product
   pathsToMatch: /**
@@ -84,13 +81,13 @@ spring:
 
 app:
   product-service:
-    host: localhost
+    host: product
     port: 8081
   recommendation-service:
-    host: localhost
+    host: recommendation
     port: 8082
   review-service:
-    host: localhost
+    host: review
     port: 8083
 
 logging:
