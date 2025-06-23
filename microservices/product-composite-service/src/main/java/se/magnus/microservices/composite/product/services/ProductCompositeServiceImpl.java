@@ -30,7 +30,9 @@ public class ProductCompositeServiceImpl implements ProductCompositeService {
 
 	@Override
 	public void createProduct(ProductAggregate body) {
-
+		LOG.info("createProduct: ", body);
+		System.out.println("createProduct: " + body);
+		
 		try {
 
 			LOG.debug("createCompositeProduct: creates a new composite entity for productId: {}", body.getProductId());
