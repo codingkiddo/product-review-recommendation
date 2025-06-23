@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.4.2'
+	id 'org.springframework.boot' version '3.0.2'
 	id 'io.spring.dependency-management' version '1.1.7'
 }
 
@@ -17,27 +17,24 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    mapstructVersion = "1.5.3.Final"
+}
+
+
 jar {
     enabled = false
 }
 
-ext {
-    mapstructVersion = "1.5.3.Final"
-}
 
 dependencies {
     implementation project(':api')
     implementation project(':util')
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui
-implementation("org.springdoc:springdoc-openapi-ui:1.8.0")
-// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-webflux-ui
-implementation("org.springdoc:springdoc-openapi-webflux-ui:1.8.0")
-implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
-
-    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webflux-ui
-implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.7.0")
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-api:2.8.9'
+    implementation 'org.springdoc:springdoc-openapi-starter-webflux-api:2.8.9'
     // To avoid the following error message on Apple silicon (for details, see https://github.com/netty/netty/issues/11693):
     // Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS.
     implementation group: 'io.netty', name: 'netty-resolver-dns-native-macos', classifier: 'osx-aarch_64'
