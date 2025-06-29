@@ -13,6 +13,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.core.env.Environment;
 import org.springframework.data.mapping.context.MappingContext;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.ReactiveMongoOperations;
 import org.springframework.data.mongodb.core.index.IndexResolver;
 import org.springframework.data.mongodb.core.index.MongoPersistentEntityIndexResolver;
 import org.springframework.data.mongodb.core.index.ReactiveIndexOperations;
@@ -32,25 +33,29 @@ public class ProductServiceApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(ProductServiceApplication.class, args);
+
 		String mongodDbHost = ctx.getEnvironment().getProperty("spring.data.mongodb.host");
 		String mongodDbPort = ctx.getEnvironment().getProperty("spring.data.mongodb.port");
 		LOG.info("Connected to MongoDb: " + mongodDbHost + ":" + mongodDbPort);
 	}
-
-	@Autowired
-	MongoOperations mongoTemplate;
 
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("ProductServiceApplication ############## ---------- " + env.getProperty("server.port"));
 	}
 
+	@Autowired
+	ReactiveMongoOperations mongoTemplate;
+
 	@EventListener(ContextRefreshedEvent.class)
 	public void initIndicesAfterStartup() {
-		MappingContext<? extends MongoPersistentEntity<?>, MongoPersistentProperty> mappingContext = mongoTemplate.getConverter().getMappingContext();
-	    IndexResolver resolver = new MongoPersistentEntityIndexResolver(mappingContext);
 
-	    ReactiveIndexOperations indexOps = (ReactiveIndexOperations) mongoTemplate.indexOps(ProductEntity.class);
-	    resolver.resolveIndexFor(ProductEntity.class).forEach(e -> indexOps.ensureIndex(e).block());
+		MappingContext<? extends MongoPersistentEntity<?>, MongoPersistentProperty> mappingContext = mongoTemplate
+				.getConverter().getMappingContext();
+		IndexResolver resolver = new MongoPersistentEntityIndexResolver(mappingContext);
+
+		ReactiveIndexOperations indexOps = mongoTemplate.indexOps(ProductEntity.class);
+		resolver.resolveIndexFor(ProductEntity.class).forEach(e -> indexOps.ensureIndex(e).block());
 	}
+
 }
